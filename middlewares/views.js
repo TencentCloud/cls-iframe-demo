@@ -1,4 +1,4 @@
-const views = require("koa-views");
+const views = require('koa-views');
 
 module.exports = function (option = {}) {
   const { root, opts } = option;

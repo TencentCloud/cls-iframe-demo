@@ -1,13 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CLS iframe demo</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<h1 style="text-align: center;">
-    CLS iframe demo
-</h1>
-<iframe src="<%- url %>" style="width: 100%; height: 500px">
-</iframe>
+<div class="cls-iframe-wrapper">
+    <div class="cls-iframe-header">
+        <img src="favicon.ico"/>
+        <h3 class="title">内嵌CLS检索页</h3>
+        <div class="form-group option">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input hideOption" type="checkbox" id="hideRegion" value="hideRegion">
+                <label class="form-check-label" for="hideRegion">隐藏顶部地域选项</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input hideOption" type="checkbox" id="hideLogsetSelect" value="hideLogsetSelect">
+                <label class="form-check-label" for="hideLogsetSelect">隐藏顶部日志集选项</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input hideOption" type="checkbox" id="hideTopicSelect" value="hideTopicSelect">
+                <label class="form-check-label" for="hideTopicSelect">隐藏顶部日志主题选项</label>
+            </div>
+        </div>   
+    </div>
+    <iframe id="clsIframe" src="<%- url %>" class="cls-iframe-content">
+    </iframe>
+</div>
+<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('.hideOption').on('change', debounce(function() {
+      var hideOptions = []
+      var list = $('.hideOption');
+      for(var i = 0; i < list.length; i++) {
+          if (list[i].checked) hideOptions.push(list[i].value)
+      }
+      $.ajax({
+          url: 'url',
+          type: 'POST',
+          contentType: "application/json;charset=UTF-8",
+          data: JSON.stringify({ hideOptions }),
+          success: function(result) {
+              var url = result.url
+              $('#clsIframe').attr('src', url)
+          },
+          error: function(err) {
+              console.log(err.status)
+              console.log(err.statusText)
+          }
+      })
+  }, 300))
+})
+
+function debounce(fn, delay) {
+  var timer;
+
+  return function () {
+    var context = this;
+    var args = arguments;
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, delay);
+  };
+};
+</script>
 </body>
 </html>

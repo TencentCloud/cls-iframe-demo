@@ -1,3 +1,6 @@
+config/local.js
 node_modules
 .idea
 .vscode
+.yarnrc
+.npmrc
