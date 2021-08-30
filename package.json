@@ -32,7 +32,10 @@
     "eslint": "^7.14.0",
     "eslint-config-tencent": "^1.0.0",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.11"
+    "lint-staged": "^10.2.11",
+    "stylelint": "^13.13.1",
+    "stylelint-config-tencent": "^1.0.0",
+    "stylelint-scss": "^3.20.1"
   },
   "husky": {
     "hooks": {
@@ -40,8 +43,13 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,html}": [
-      "eslint -c .eslintrc --fix"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint -c .eslintrc --fix",
+      "git add"
+    ],
+    "*.{html,vue,css,sass,scss,less}": [
+      "stylelint --fix",
+      "git add"
     ]
   }
 }

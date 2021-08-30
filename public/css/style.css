@@ -8,6 +8,7 @@
   flex-direction: column;
   min-width: 1220px;
 }
+
 .cls-iframe-header {
   padding: 12px;
   display: flex;
@@ -25,5 +26,5 @@
 
 .cls-iframe-content {
   flex-grow: 1;
-  border: none;
+  border: 0;
 }
