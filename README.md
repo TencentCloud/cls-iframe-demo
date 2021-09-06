@@ -15,33 +15,35 @@ nodejs >= 10
 host | 本地运行IP
 port | 本地运行端口
 s_url | 内嵌页面跳转地址
-SecretId | 腾讯云API密钥SecretId
-SecretKey | 腾讯云API密钥SecretKey
+SecretId | [云API密钥]SecretId
+SecretKey | [云API密钥]SecretKey
 Region | [AssumeRole]接口请求地域
-RoleArn | [AssumeRole]接口请求参数
-RoleSessionName | [AssumeRole]接口请求参数
+RoleArn | [AssumeRole]接口请求参数。<br>角色的资源描述，可在[访问管理]，点击角色名获取。<br>普通角色：<br>qcs::cam::uin/12345678:role/4611686018427397919、qcs::cam::uin/12345678:roleName/testRoleName<br>服务角色：<br>qcs::cam::uin/12345678:role/tencentcloudServiceRole/4611686018427397920、qcs::cam::uin/12345678:role/tencentcloudServiceRoleName/testServiceRoleName
+RoleSessionName | [AssumeRole]接口请求参数，默认为cls-iframe。<br>临时会话名称，由用户自定义名称。<br>长度在2到128之间，可包含大小写字符，数字以及特殊字符：=,.@-。 正则为：[\w+=,.@-]*
 
 # 运行
 
-### 1. 本地运行
+### 本地运行
 
-##### 1.1 安装[nodejs], [yarn]
+##### 1 安装[nodejs], [yarn]
 
-##### 1.2 安装依赖
+##### 2 安装依赖
 
 `cd YOUR_PATH/cls-iframe-demo`
 
 `yarn install`
 
-##### 1.3 运行
+##### 3 运行
 
 `yarn start`
 
-##### 1.4 浏览器打开demo页面
+##### 4 浏览器打开demo页面
 
 查看命令行中打印的 `Server running at http://xxxx` url地址，在浏览器中打开。
 
+[云API密钥]: https://console.cloud.tencent.com/capi
 [AssumeRole]: https://cloud.tencent.com/document/product/598/33164
+[访问管理]: https://console.cloud.tencent.com/cam/role
 [内嵌日志服务控制台]: https://cloud.tencent.com/document/product/614/45742
 [nodejs]: https://nodejs.org/
 [yarn]: https://yarnpkg.com/
