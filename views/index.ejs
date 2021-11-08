@@ -22,52 +22,59 @@
                 <input class="form-check-input hideOption" type="checkbox" id="hideTopicSelect" value="hideTopicSelect">
                 <label class="form-check-label" for="hideTopicSelect">隐藏顶部日志主题选项</label>
             </div>
-        </div>   
+        </div>
     </div>
+    <!-- 确保做好权限控制后，用户可自行删除本提示 -->
+    <div style="color: red; margin-left: 20px;">
+        注意：<br/>
+        该demo中不包含鉴权外部系统鉴权逻辑，部署后所有访问者（即使未登陆腾讯云）均可以demo中配置的角色权限查看账户中的数据。<br/>
+        为保障数据隐私，请自行添加外部系统鉴权逻辑或限制其仅在内网中可访问，以确保有权限的用户才能够查看该页面。
+    </div>
+
     <iframe id="clsIframe" src="<%- url %>" class="cls-iframe-content">
     </iframe>
 </div>
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script>
-$(document).ready(function(){
-  $('.hideOption').on('change', debounce(function() {
+  $(document).ready(function(){
+    $('.hideOption').on('change', debounce(function() {
       var hideOptions = []
       var list = $('.hideOption');
       for(var i = 0; i < list.length; i++) {
-          if (list[i].checked) hideOptions.push(list[i].value)
+        if (list[i].checked) hideOptions.push(list[i].value)
       }
       $.ajax({
-          url: 'url',
-          type: 'POST',
-          contentType: "application/json;charset=UTF-8",
-          data: JSON.stringify({ hideOptions }),
-          success: function(result) {
-              var url = result.url
-              $('#clsIframe').attr('src', url)
-          },
-          error: function(err) {
-              console.log(err.status)
-              console.log(err.statusText)
-          }
+        url: 'url',
+        type: 'POST',
+        contentType: "application/json;charset=UTF-8",
+        data: JSON.stringify({ hideOptions }),
+        success: function(result) {
+          var url = result.url
+          $('#clsIframe').attr('src', url)
+        },
+        error: function(err) {
+          console.log(err.status)
+          console.log(err.statusText)
+        }
       })
-  }, 300))
-})
+    }, 300))
+  })
 
-function debounce(fn, delay) {
-  var timer;
+  function debounce(fn, delay) {
+    var timer;
 
-  return function () {
-    var context = this;
-    var args = arguments;
+    return function () {
+      var context = this;
+      var args = arguments;
 
-    clearTimeout(timer);
+      clearTimeout(timer);
 
-    timer = setTimeout(() => {
-      fn.apply(context, args);
-    }, delay);
+      timer = setTimeout(() => {
+        fn.apply(context, args);
+      }, delay);
+    };
   };
-};
 </script>
 </body>
 </html>
