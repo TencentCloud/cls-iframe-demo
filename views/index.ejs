@@ -11,16 +11,8 @@
         <h3 class="title">内嵌CLS检索页</h3>
         <div class="form-group option">
             <div class="form-check form-check-inline">
-                <input class="form-check-input hideOption" type="checkbox" id="hideRegion" value="hideRegion">
-                <label class="form-check-label" for="hideRegion">隐藏顶部地域选项</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input hideOption" type="checkbox" id="hideLogsetSelect" value="hideLogsetSelect">
-                <label class="form-check-label" for="hideLogsetSelect">隐藏顶部日志集选项</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input hideOption" type="checkbox" id="hideTopicSelect" value="hideTopicSelect">
-                <label class="form-check-label" for="hideTopicSelect">隐藏顶部日志主题选项</label>
+                <input class="form-check-input hideOption" type="checkbox" id="hideTopicSelect" value="hideRegion,hideTopicSelect">
+                <label class="form-check-label" for="hideTopicSelect">隐藏顶部日志主题选择</label>
             </div>
         </div>
     </div>
@@ -42,7 +34,8 @@
       var hideOptions = []
       var list = $('.hideOption');
       for(var i = 0; i < list.length; i++) {
-        if (list[i].checked) hideOptions.push(list[i].value)
+        const hideValues = list[i].value.split(',')
+        if (list[i].checked) hideOptions = hideOptions.concat(hideValues)
       }
       $.ajax({
         url: 'url',
