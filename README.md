@@ -1,3 +1,7 @@
+# CLS SDK提供日志服务控制台页面内嵌到其他系统新版本发布！ [新版仓库](https://github.com/TencentCloud/cls-console-sdk)
+
+将腾讯云日志服务以内嵌方式集成到其他系统中，免登录实现一站式日志访问，方便快捷使用CLS日志服务（包含检索分析，仪表盘）
+
 # CLS iframe demo
 
 [内嵌日志服务控制台]
