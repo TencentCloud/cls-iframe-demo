@@ -15,7 +15,7 @@ module.exports = function (opts = {}) {
     let page;
     // 如果已有回包就不执行 page 模块
     // websocket handshake 请求没有 `ctx.res` 对象, 取 `ctx.status` 会异常. 不影响后面模块执行
-    if ((ctx.res && (!!ctx.body || ctx.status !== 404))) {
+    if (ctx.res && (!!ctx.body || ctx.status !== 404)) {
       return next();
     }
 

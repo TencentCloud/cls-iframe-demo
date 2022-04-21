@@ -8,24 +8,30 @@ const app = new Koa();
 app.use(send());
 app.use(bodyParser());
 
-app.use(serve({
-  dir: pt.join(__dirname, './public'),
-}));
+app.use(
+  serve({
+    dir: pt.join(__dirname, './public'),
+  }),
+);
 
-app.use(views({
-  root: pt.join(__dirname, './views'),
-  opts: {
-    map: {
-      ejs: 'ejs',
+app.use(
+  views({
+    root: pt.join(__dirname, './views'),
+    opts: {
+      map: {
+        ejs: 'ejs',
+      },
     },
-  },
-}));
+  }),
+);
 
-app.use(page({
-  path: '',
-  dir: pt.join(__dirname, './controllers'),
-  middlewares: [],
-}));
+app.use(
+  page({
+    path: '',
+    dir: pt.join(__dirname, './controllers'),
+    middlewares: [],
+  }),
+);
 
 app
   .listen(config.get('port'), config.get('host'), () => {

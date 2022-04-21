@@ -22,20 +22,20 @@
     "koa-compress": "^5.0.1",
     "koa-router": "^10.0.0",
     "koa-static": "^5.0.0",
-    "koa-views": "^6.3.1",
-    "serverless-http": "^2.6.0",
-    "tencentcloud-sdk-nodejs": "^3.0.175"
+    "koa-views": "^8.0.0",
+    "tencentcloud-sdk-nodejs": "^4.0.331"
   },
   "devDependencies": {
-    "@types/node": "^12.0.0",
+    "@types/node": "^17.0.25",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.14.0",
-    "eslint-config-tencent": "^1.0.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
-    "stylelint": "^13.13.1",
-    "stylelint-config-tencent": "^1.0.0",
-    "stylelint-scss": "^3.20.1"
+    "eslint": "^8.13.0",
+    "eslint-config-tencent": "^1.0.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.0",
+    "prettier": "^2.6.2",
+    "stylelint": "^14.7.1",
+    "stylelint-config-tencent": "^1.0.0"
   },
   "husky": {
     "hooks": {

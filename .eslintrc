@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint-config-tencent"],
+  "extends": ["eslint-config-tencent", "eslint-config-tencent/prettier"],
   "env": {
     "node": true
   }

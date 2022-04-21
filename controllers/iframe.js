@@ -1,13 +1,13 @@
 const compose = require('koa-compose');
-const { getTmpAuth, getLoginUrl } = require('../utils');
+const { getTmpCredential, getRoleAccessUrl } = require('../utils');
 
 module.exports = {
   async render() {
     return compose([
       async (ctx, next) => {
         try {
-          const tmpAuth = await getTmpAuth();
-          const loginUrl = getLoginUrl(tmpAuth.Credentials);
+          const tmpAuth = await getTmpCredential();
+          const loginUrl = getRoleAccessUrl(tmpAuth.Credentials);
 
           await ctx.render('index.ejs', {
             url: loginUrl,

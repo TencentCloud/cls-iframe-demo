@@ -1,5 +1,6 @@
 const compose = require('koa-compose');
-const { getTmpAuth, getLoginUrlWithHideOptions } = require('../utils');
+const { getTmpCredential, getRoleAccessUrl } = require('../utils');
+const config = require('config');
 
 module.exports = {
   async render() {
@@ -8,11 +9,14 @@ module.exports = {
         console.log(JSON.stringify({ action: 'url', params: ctx.request.body }));
         const { hideOptions } = ctx.request.body || [];
         try {
-          const tmpAuth = await getTmpAuth();
-          const loginUrl = getLoginUrlWithHideOptions(tmpAuth.Credentials, hideOptions);
+          const tmpAuth = await getTmpCredential();
+          const targetUrl =
+            config.get('s_url') +
+            (Array.isArray(hideOptions) ? `&${hideOptions.map((el) => `${el}=true`).join('&')}` : '');
+          const roleAccessUrl = getRoleAccessUrl(tmpAuth.Credentials, targetUrl);
 
           ctx.send({
-            url: loginUrl,
+            url: roleAccessUrl,
           });
         } catch (e) {
           ctx.send({ code: e.code, message: e.message, status: e.status });

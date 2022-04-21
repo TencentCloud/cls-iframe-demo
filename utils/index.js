@@ -1,10 +1,7 @@
-const { obj2urlParams } = require('./object');
-const { getTmpAuth } = require('./tmp-auth');
-const { getLoginUrl, getLoginUrlWithHideOptions } = require('./role-access');
+const { getTmpCredential } = require('./getTmpCredential');
+const { getRoleAccessUrl } = require('./roleAccess');
 
 module.exports = {
-  obj2urlParams,
-  getTmpAuth,
-  getLoginUrl,
-  getLoginUrlWithHideOptions,
+  getTmpCredential,
+  getRoleAccessUrl,
 };
