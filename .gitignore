@@ -6,3 +6,6 @@ node_modules
 .npmrc
 .DS_Store
 .history
+
+.env
+**/.env

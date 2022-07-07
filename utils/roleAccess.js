@@ -29,7 +29,7 @@ const getRoleAccessUrl = (credential, targetUrl = config.get('s_url')) => {
     signature,
     s_url: targetUrl,
   };
-  const loginUrl = `//cloud.tencent.com/login/roleAccessCallback?${obj2urlParams(finalUrlParams)}`;
+  const loginUrl = `https://cloud.tencent.com/login/roleAccessCallback?${obj2urlParams(finalUrlParams)}`;
   return loginUrl;
 };
 

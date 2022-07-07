@@ -10,7 +10,7 @@ const clientConfig = {
     secretKey: config.get('SecretKey'),
   },
   // 产品地域
-  region: config.get('Region'),
+  region: 'ap-guangzhou',
   // 可选配置实例
   profile: {
     signMethod: 'TC3-HMAC-SHA256',
@@ -26,12 +26,17 @@ const client = new StsClient(clientConfig);
  * 调用 AssumeRole 接口，获取到角色的临时密钥
  */
 async function getTmpCredential() {
-  const response = await client.AssumeRole({
-    RoleArn: config.get('RoleArn'),
-    RoleSessionName: config.get('RoleSessionName'),
-  });
-  console.log(JSON.stringify({ action: 'getTmpCredentials', response }));
-  return response;
+  try {
+    const response = await client.AssumeRole({
+      RoleArn: config.get('RoleArn'),
+      RoleSessionName: config.get('RoleSessionName'),
+    });
+    console.log(JSON.stringify({ action: 'getTmpCredentials', response }));
+    return response;
+  } catch (e) {
+    console.error(e);
+    return Promise.reject(e);
+  }
 }
 
 module.exports = {

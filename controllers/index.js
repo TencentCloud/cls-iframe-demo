@@ -1,3 +1,16 @@
-const iframe = require('./iframe');
+const compose = require('koa-compose');
 
-module.exports = iframe;
+module.exports = {
+  async render() {
+    return compose([
+      async (ctx, next) => {
+        try {
+          await ctx.render('index.ejs');
+        } catch (e) {
+          ctx.send({ code: e.code, message: e.message, status: e.status });
+        }
+        await next();
+      },
+    ]);
+  },
+};

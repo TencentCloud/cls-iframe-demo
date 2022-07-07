@@ -6,22 +6,24 @@ module.exports = {
   async render() {
     return compose([
       async (ctx, next) => {
-        console.log(JSON.stringify({ action: 'url', params: ctx.request.body }));
-        const { hideOptions } = ctx.request.body || [];
-        try {
-          const tmpAuth = await getTmpCredential();
-          const targetUrl =
-            config.get('s_url') +
-            (Array.isArray(hideOptions) ? `&${hideOptions.map((el) => `${el}=true`).join('&')}` : '');
-          const roleAccessUrl = getRoleAccessUrl(tmpAuth.Credentials, targetUrl);
+        const requestBody = ctx.request.body;
+        // 如果需要支持其他选项，如仪表盘相关页面，可以直接增加请求参数
+        console.log(JSON.stringify({ action: 'url', params: requestBody }));
 
-          ctx.send({
-            url: roleAccessUrl,
-          });
-        } catch (e) {
-          ctx.send({ code: e.code, message: e.message, status: e.status });
+        if (config.get('password') && requestBody.password !== config.get('password')) {
+          ctx.send({ code: 'InvalidPassword', message: '密码错误' });
+        } else {
+          try {
+            const targetUrl = `${config.get('s_url')}`;
+            const tmpAuth = await getTmpCredential();
+            const roleAccessUrl = getRoleAccessUrl(tmpAuth.Credentials, targetUrl);
+            ctx.send({
+              url: roleAccessUrl,
+            });
+          } catch (e) {
+            ctx.send({ code: e.code, message: e.message, status: e.status });
+          }
         }
-
         await next();
       },
     ]);

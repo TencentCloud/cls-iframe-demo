@@ -1,7 +1,6 @@
 const pt = require('path');
 const Koa = require('koa');
 const { page, views, serve, send } = require('./middlewares');
-const config = require('config');
 const bodyParser = require('koa-bodyparser');
 
 const app = new Koa();
@@ -33,9 +32,11 @@ app.use(
   }),
 );
 
+const host = '0.0.0.0';
+const port = 3000;
 app
-  .listen(config.get('port'), config.get('host'), () => {
-    console.log(`Server running at http://${config.get('host')}:${config.get('port')}/`);
+  .listen(port, host, () => {
+    console.log(`Server running at http://${host}:${port}/`);
   })
   .on('clientError', (err, socket) => {
     console.error(err);
