@@ -3,6 +3,7 @@
 // 为保障数据隐私，请自行添加外部系统鉴权逻辑或限制其仅在内网中可访问，以确保有权限的用户才能够查看该页面。
 const config = {
   password: '',
+  port: 3000,
   s_url: 'https://console.cloud.tencent.com/cls/search?hideLeftNav=true&hideTopNav=true&hideHeader=true',
 
   SecretId: '',
