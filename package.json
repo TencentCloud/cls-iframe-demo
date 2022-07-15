@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "npm run start",
-    "start": "env-cmd -f ./.env node app.js"
+    "start": "node -r dotenv/config app.js dotenv_config_path=.env",
+    "deploy": "pm2 startOrRestart ecosystem.config.js --env production"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,7 @@
   "dependencies": {
     "config": "^3.2.5",
     "crypto": "^1.0.1",
+    "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
@@ -24,12 +26,12 @@
     "koa-router": "^10.0.0",
     "koa-static": "^5.0.0",
     "koa-views": "^8.0.0",
+    "pm2": "^5.2.0",
     "tencentcloud-sdk-nodejs": "^4.0.358"
   },
   "devDependencies": {
     "@types/node": "^17.0.41",
     "babel-eslint": "^10.1.0",
-    "env-cmd": "^10.1.0",
     "eslint": "^8.17.0",
     "eslint-config-tencent": "^1.0.4",
     "eslint-plugin-prettier": "^4.0.0",

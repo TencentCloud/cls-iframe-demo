@@ -27,6 +27,13 @@
           });
         });
       }
+      function prepareIframe(url) {
+        const ifrm = document.createElement('iframe');
+        ifrm.setAttribute('src', url);
+        ifrm.style.width = '99vw';
+        ifrm.style.height = '90vh';
+        document.body.appendChild(ifrm);
+      }
       $(document).ready(() => {
         $.ajax({
           url: 'hasPassword',
@@ -37,12 +44,12 @@
               ? window.prompt('请输入免登陆跳转服务密码（注意：将覆盖已登录账号）')
               : '';
             fetchConsoleLink(password)
-              .then((result) => {
-                window.location = result.url;
+              .then(({ url }) => {
+                prepareIframe(url);
               })
               .catch((err) => {
                 console.log(err);
-                alert(JSON.stringify(err));
+                alert(JSON.stringify(result));
               });
           },
         });
