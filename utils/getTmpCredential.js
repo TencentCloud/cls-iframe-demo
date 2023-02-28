@@ -17,6 +17,7 @@ const clientConfig = {
     httpProfile: {
       reqMethod: 'POST',
       reqTimeout: 30,
+      endpoint: `sts.${config.get('baseCloudApiEndpoint')}`,
     },
   },
 };

@@ -10,6 +10,7 @@ const config = {
   SecretKey: '',
   RoleArn: '',
   RoleSessionName: 'cls-iframe',
+  baseCloudApiEndpoint: 'tencentcloudapi.com',
 };
 
 Object.keys(config).forEach((key) => {
