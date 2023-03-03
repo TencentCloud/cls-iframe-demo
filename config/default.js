@@ -4,7 +4,7 @@
 const config = {
   password: '',
   port: 3000,
-  s_url: 'https://console.cloud.tencent.com/cls/search?hideLeftNav=true&hideTopNav=true&hideHeader=true',
+  s_url: 'https://console.cloud.tencent.cn/cls/search?hideLeftNav=true&hideTopNav=true&hideHeader=true',
 
   SecretId: '',
   SecretKey: '',

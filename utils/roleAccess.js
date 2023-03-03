@@ -29,7 +29,7 @@ const getRoleAccessUrl = (credential, targetUrl = config.get('s_url')) => {
     signature,
     s_url: targetUrl,
   };
-  const loginUrl = `https://cloud.tencent.com/login/roleAccessCallback?${obj2urlParams(finalUrlParams)}`;
+  const loginUrl = `https://cloud.tencent.cn/login/roleAccessCallback?${obj2urlParams(finalUrlParams)}`;
   return loginUrl;
 };
 
@@ -38,7 +38,7 @@ const getCredentialSignature = (signatureParams, secretKey) => {
   // 按Key字母表顺序，拼接签名参数
   const signatureParamStr = obj2urlParams(signatureParams);
   // 拼接签名串
-  const formatString = `GETcloud.tencent.com/login/roleAccessCallback?${signatureParamStr}`;
+  const formatString = `GETcloud.tencent.cn/login/roleAccessCallback?${signatureParamStr}`;
   // 生成签名串
   const hmac = crypto.createHmac('sha1', secretKey);
   const signature = hmac.update(Buffer.from(formatString, 'utf-8')).digest('base64');
