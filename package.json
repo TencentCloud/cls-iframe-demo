@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npm run start",
     "start": "node -r dotenv/config app.js dotenv_config_path=.env",
-    "deploy": "pm2 startOrRestart ecosystem.config.js --env production"
+    "deploy": "pm2 startOrRestart ecosystem.config.js --env production",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -27,33 +28,30 @@
     "koa-static": "^5.0.0",
     "koa-views": "^8.0.0",
     "pm2": "^5.2.0",
-    "tencentcloud-sdk-nodejs": "^4.0.358"
+    "tencentcloud-sdk-nodejs": "^4.0.551"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
     "@types/node": "^17.0.41",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.17.0",
     "eslint-config-tencent": "^1.0.4",
     "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.4.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "prettier": "^2.6.2",
-    "stylelint": "^14.9.0",
-    "stylelint-config-tencent": "^1.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "stylelint": "^13.13.1",
+    "stylelint-config-tencent": "^1.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.21.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint -c .eslintrc --fix",
-      "git add"
+      "eslint -c .eslintrc --fix"
     ],
     "*.{html,vue,css,sass,scss,less}": [
-      "stylelint --fix",
-      "git add"
+      "stylelint --fix"
     ]
   }
 }
