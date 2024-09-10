@@ -19,7 +19,7 @@ module.exports = function (opts = {}) {
       return next();
     }
 
-    const modulePath = pt.join(dir, ctx.params.path || '');
+    const modulePath = pt.join(dir, (ctx.params.path || '').replaceAll(/\.\/\\/g, ''));
 
     try {
       page = require(modulePath);
