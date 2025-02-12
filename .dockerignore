@@ -4,3 +4,11 @@ node_modules
 **/.git
 .env
 **/.env
+.idea
+config/local.js
+
+.vscode
+.yarnrc
+.npmrc
+.DS_Store
+.history
