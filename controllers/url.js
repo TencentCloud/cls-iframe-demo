@@ -16,8 +16,7 @@ module.exports = {
         } else {
           try {
             const targetUrl = `${config.get('s_url')}`;
-            const tmpAuth = await getTmpCredential();
-            const area = await getAccountArea();
+            const [tmpAuth, area] = await Promise.all([getTmpCredential(), getAccountArea()]);
             const roleAccessUrl = getRoleAccessUrl(tmpAuth.Credentials, targetUrl, area);
             ctx.send({
               url: roleAccessUrl,
