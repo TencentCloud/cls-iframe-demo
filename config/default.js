@@ -5,6 +5,8 @@ const config = {
   password: '',
   port: 3000,
   s_url: 'https://console.cloud.tencent.cn/cls/search?hideLeftNav=true&hideTopNav=true&hideHeader=true',
+  // 国际站账号需要使用以下国际站域名的s_url跳转地址
+  // s_url: 'https://console.tencentcloud.com/cls/search?hideLeftNav=true&hideTopNav=true&hideHeader=true',
 
   SecretId: '',
   SecretKey: '',

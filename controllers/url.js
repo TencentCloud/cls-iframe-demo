@@ -1,6 +1,7 @@
 const compose = require('koa-compose');
 const { getTmpCredential, getRoleAccessUrl } = require('../utils');
 const config = require('config');
+const { getAccountArea } = require('../utils/getAccountArea');
 
 module.exports = {
   async render() {
@@ -16,7 +17,8 @@ module.exports = {
           try {
             const targetUrl = `${config.get('s_url')}`;
             const tmpAuth = await getTmpCredential();
-            const roleAccessUrl = getRoleAccessUrl(tmpAuth.Credentials, targetUrl);
+            const area = await getAccountArea();
+            const roleAccessUrl = getRoleAccessUrl(tmpAuth.Credentials, targetUrl, area);
             ctx.send({
               url: roleAccessUrl,
             });

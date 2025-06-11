@@ -5,8 +5,9 @@ const config = require('config');
 /** 获取最终可用的 免登陆网址。相关逻辑详细介绍请参考 https://cloud.tencent.com/document/product/598/13650
  * @param {{ Token, TmpSecretId, TmpSecretKey}} credential 临时秘钥凭证。使用 getTemCredential 函数获取
  * @param {string} targetUrl 免登陆后跳转的目标网址链接
+ * @param area 站点类型，0 为中国站，1 为国际站
  */
-const getRoleAccessUrl = (credential, targetUrl = config.get('s_url')) => {
+const getRoleAccessUrl = (credential, targetUrl = config.get('s_url'), area = 0) => {
   const { Token: token, TmpSecretId, TmpSecretKey } = credential;
   // 通过该角色的临时密钥生成登录签名信息
   const signatureParams = {
@@ -15,7 +16,7 @@ const getRoleAccessUrl = (credential, targetUrl = config.get('s_url')) => {
     secretId: TmpSecretId,
     timestamp: Math.floor(Date.now() / 1000),
   };
-  const signature = getCredentialSignature(signatureParams, TmpSecretKey);
+  const signature = getCredentialSignature(signatureParams, TmpSecretKey, area);
 
   // s_url 为目标网址链接
 
@@ -29,16 +30,20 @@ const getRoleAccessUrl = (credential, targetUrl = config.get('s_url')) => {
     signature,
     s_url: targetUrl,
   };
-  const loginUrl = `https://cloud.tencent.cn/login/roleAccessCallback?${obj2urlParams(finalUrlParams)}`;
+  const loginUrl = `https://${
+    area > 0 ? 'www.tencentcloud.com/account' : 'cloud.tencent.cn'
+  }/login/roleAccessCallback?${obj2urlParams(finalUrlParams)}`;
   return loginUrl;
 };
 
 /** 根据签名参数和秘钥Key，获取登录签名信息 */
-const getCredentialSignature = (signatureParams, secretKey) => {
+const getCredentialSignature = (signatureParams, secretKey, area = 0) => {
   // 按Key字母表顺序，拼接签名参数
   const signatureParamStr = obj2urlParams(signatureParams);
   // 拼接签名串
-  const formatString = `GETcloud.tencent.cn/login/roleAccessCallback?${signatureParamStr}`;
+  const formatString = `GET${
+    area > 0 ? 'www.tencentcloud.com' : 'cloud.tencent.cn'
+  }/login/roleAccessCallback?${signatureParamStr}`;
   // 生成签名串
   const hmac = crypto.createHmac('sha1', secretKey);
   const signature = hmac.update(Buffer.from(formatString, 'utf-8')).digest('base64');
