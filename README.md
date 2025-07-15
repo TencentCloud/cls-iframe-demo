@@ -6,8 +6,8 @@
 用户可将代码逻辑拷贝到自己的项目中，为免登陆用户提供链接生成服务。
 
 **注意：**<br/>
-**该 demo 中不包含鉴权外部系统鉴权逻辑，部署后所有访问者（即使未登陆腾讯云）均可以 demo 中配置的角色权限查看账户中的数据。**<br/>
-**为保障数据隐私，请自行添加外部系统鉴权逻辑或限制其仅在内网中可访问，以确保有权限的用户才能够查看该页面。**
+**1. 该 demo 中不包含鉴权外部系统鉴权逻辑，部署后所有访问者（即使未登陆腾讯云）均可以 demo 中配置的角色权限查看账户中的数据。为保障数据隐私，请自行添加外部系统鉴权逻辑或限制其仅在内网中可访问，以确保有权限的用户才能够查看该页面。**<br/>
+**2. 目前主流浏览器均计划严格限制[第三方Cookie](https://developer.mozilla.org/zh-CN/docs/Web/Privacy/Guides/Third-party_cookies)，具体策略可参考[浏览器如何处理第三方Cookie](https://developer.mozilla.org/zh-CN/docs/Web/Privacy/Guides/Third-party_cookies#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%AC%AC%E4%B8%89%E6%96%B9_cookie)。如需通过iframe嵌入本demo所示的免登录链接，需确保浏览器允许使用第三方Cookie能力，否则将无法在iframe中完成自动登陆。**<br/>
 
 # 配置
 
