@@ -33,7 +33,7 @@
 > `docker build . --tag=cls_iframe_demo`
 >
 > 运行容器
-> `docker run --env-file ./.env -p 3000:3000 cls_iframe_demo`
+> `docker run -d --env-file ./.env -p 3000:3000 cls_iframe_demo`
 
 ### Nodejs 运行方案
 
